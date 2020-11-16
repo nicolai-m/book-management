@@ -1,0 +1,10 @@
+homepage: Bücherverwaltung
+
+nav:
+  home: Home
+
+book:
+  title: Titel
+  isbn: ISBN
+  author: Autor
+  borrowed: Ausgeliehen
