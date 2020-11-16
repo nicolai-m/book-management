@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>{{ book.title }}</h2>
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <td>{% trans %}book.title{% endtrans %}</td>
+                <td>{{ book.title }}</td>
+            </tr>
+            <tr>
+                <td>{% trans %}book.isbn{% endtrans %}</td>
+                <td>{{ book.isbn }}</td>
+            </tr>
+            <tr>
+                <td>{% trans %}book.author{% endtrans %}</td>
+                <td>{{ book.author }}</td>
+            </tr>
+            <tr>
+                <td>{% trans %}book.borrowed{% endtrans %}</td>
+                <td>{{ book.borrowed }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
