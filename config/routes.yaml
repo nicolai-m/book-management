@@ -6,6 +6,18 @@ app_home:
   path: /
   controller: App\View\Home::displayHome
 
+app_book_create:
+  path: /book/create
+  controller: App\View\CreateAndEdit::createBook
+
 app_book:
   path: /book/{isbn}
   controller: App\View\Book::displayBook
+
+app_not_found:
+  path: /notfound
+  controller: App\View\Home::notFound
+
+app_o_library_search:
+  path: /request_api/o_library
+  controller: App\View\OpenLibraryInfos::getBookByApi
