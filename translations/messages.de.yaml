@@ -2,9 +2,18 @@ homepage: Bücherverwaltung
 
 nav:
   home: Home
+  create: Buch hinzufügen
 
 book:
   title: Titel
   isbn: ISBN
   author: Autor
-  borrowed: Ausgeliehen
+  borrowed:
+    title: Ausgeliehen
+    yes: Ja
+    no: Nein
+  add: Hinzufügen
+  exists: Das Buch existiert bereits!
+  added: Wurde hinzugefügt
+
+not_found: Eintrag nicht gefunden!
