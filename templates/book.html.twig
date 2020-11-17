@@ -20,8 +20,14 @@
                 <td>{{ book.author }}</td>
             </tr>
             <tr>
-                <td>{% trans %}book.borrowed{% endtrans %}</td>
-                <td>{{ book.borrowed }}</td>
+                <td>{% trans %}book.borrowed.title{% endtrans %}</td>
+                <td>
+                    {% if book.borrowed %}
+                        {% trans %}book.borrowed.yes{% endtrans %}
+                    {% else %}
+                        {% trans %}book.borrowed.no{% endtrans %}
+                    {% endif %}
+                </td>
             </tr>
             </tbody>
         </table>

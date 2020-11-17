@@ -4,20 +4,33 @@
 namespace App\View;
 
 
+use App\Controller\BookController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+
 
 class Book extends AbstractController
 {
-    public function displayBook(string $isbn): Response
-    {
+    /** @var BookController */
+    private $bookController;
 
+    public function __construct(BookController $bookController)
+    {
+        $this->bookController = $bookController;
+    }
+
+    public function displayBook(string $isbn)
+    {
+        $book = $this->bookController->read($isbn);
+
+        if(empty($book)) {
+            return $this->redirectToRoute('app_not_found');
+        }
 
         $params['book'] = [
-            'title'     => 'Test Buch',
-            'isbn'      => $isbn,
-            'author'    => 'asd',
-            'borrowed'  => '1'
+            'title'     => $book->getTitle(),
+            'isbn'      => $book->getIsbn(),
+            'author'    => $book->getAuthor(),
+            'borrowed'  => $book->getBorrowed()
         ];
 
         return $this->render('book.html.twig',$params);
