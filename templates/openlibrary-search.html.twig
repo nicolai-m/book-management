@@ -1,0 +1,55 @@
+<div class="modal fade" id="openlibrary-result">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="modal-body">
+
+{#                {{ dump(infos) }}#}
+                {% if infos is not empty %}
+                <table class="table table-striped">
+                    {% for info in infos %}
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="2" class="thead-dark">{{ info.title }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{% trans %}book.title{% endtrans %}</td>
+                        <td id="{{ info.isbn }}_title">{{ info.title }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans %}book.isbn{% endtrans %}</td>
+                        <td id="{{ info.isbn }}_isbn">{{ info.isbn }}</td>
+                    </tr>
+                    <tr>
+                        <td>{% trans %}book.author{% endtrans %}</td>
+                        {% if info.author is not empty %}
+                        <td id="{{ info.isbn }}_author">{{ info.author }}</td>
+                        {% else %}
+                        <td id="{{ info.isbn }}_author"></td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button id="{{ info.isbn }}" type="button" class="btn btn-secondary" onclick="applyDetails({{ info.isbn }})">
+                                <i class="fas fa-file-import"></i> {% trans %}book.apply{% endtrans %}
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+                {% else %}
+                    <div class="alert alert-info">{% trans %}book.no_items_found{% endtrans %}</div>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+</div>
