@@ -35,9 +35,4 @@ class Book extends AbstractController
 
         return $this->render('book.html.twig',$params);
     }
-
-    public function bookList(int $page = 1)
-    {
-        return $this->booksRepository->findOneBy(['isbn' => $isbn]);
-    }
 }

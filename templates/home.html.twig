@@ -4,6 +4,39 @@
 
 {% block body %}
     <div class="container">
-123
+        {% include '@widget/pagination.html.twig' %}
+
+        {% if books is not empty %}
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th class="thead-dark">{% trans %}book.title{% endtrans %}</th>
+                <th class="thead-dark">{% trans %}book.isbn{% endtrans %}</th>
+                <th class="thead-dark">{% trans %}book.borrowed.title{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+            <tr>
+                <td><a href="{{ path('app_book', {isbn: book.isbn}) }}">{{ book.title }}</a></td>
+                <td><a href="{{ path('app_book', {isbn: book.isbn}) }}">{{ book.isbn }}</a></td>
+                <td>
+                    {% if book.borrowed %}
+                        {% trans %}book.borrowed.yes{% endtrans %}
+                    {% else %}
+                        {% trans %}book.borrowed.no{% endtrans %}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% else %}
+            <div class="alert alert-info">{% trans %}book.no_items_found{% endtrans %}</div>
+        {% endif %}
+
+        {% include '@widget/pagination.html.twig' %}
     </div>
 {% endblock %}

@@ -6,6 +6,10 @@ app_home:
   path: /
   controller: App\View\Home::displayHome
 
+app_home_page:
+  path: /home/{page}
+  controller: App\View\Home::bookList
+
 app_book_create:
   path: /book/create
   controller: App\View\CreateAndEdit::createBook

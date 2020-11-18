@@ -23,3 +23,25 @@
   background-color: black;
   opacity: 0.5;
 }
+
+a {
+  color: #6c757d;
+  &:hover {
+    text-decoration: underline;
+    color: #343a40;
+  }
+}
+
+.pagination {
+  .page-item {
+    a {
+      color: #495057;
+      background-color: #e9ecef;
+    }
+  }
+
+  .active a {
+    background-color: #008000 !important;
+    border-color: #dfdfdf !important;
+  }
+}

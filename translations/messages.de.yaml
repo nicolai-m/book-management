@@ -24,3 +24,6 @@ book:
   no_items_found: Keine Eintrag gefunden!
 
 not_found: Eintrag nicht gefunden!
+
+firstPage: Erste
+lastPage: Letzte

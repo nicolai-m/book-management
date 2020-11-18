@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Books;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +21,28 @@ class BooksRepository extends ServiceEntityRepository
         parent::__construct($registry, Books::class);
     }
 
-    // /**
-    //  * @return Books[] Returns an array of Books objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return int|mixed|string|null
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function countAll()
     {
         return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('count(b.id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+    public function findWithLimit(int $limit, int $offset, string $orderBy = 'ASC')
+    {
+        return $this->createQueryBuilder('b')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->orderBy('b.created', $orderBy)
             ->getQuery()
             ->getResult()
-        ;
+            ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Books
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

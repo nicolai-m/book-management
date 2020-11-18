@@ -48,6 +48,7 @@ class BookController
      * @param string $isbn
      * @param string $author
      * @param bool $borrowed
+     * @return bool
      */
     public function create(string $title,string $isbn, string $author, bool $borrowed)
     {
