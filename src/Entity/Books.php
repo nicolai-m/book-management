@@ -18,7 +18,7 @@ class Books
     private $id;
 
     /**
-     * @ORM\Column(type="bigint")
+     * @ORM\Column(type="string", length=255)
      */
     private $isbn;
 
@@ -36,6 +36,11 @@ class Books
      * @ORM\Column(type="boolean")
      */
     private $borrowed;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
 
     public function getId(): ?int
     {
@@ -86,6 +91,18 @@ class Books
     public function setBorrowed(bool $borrowed): self
     {
         $this->borrowed = $borrowed;
+
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
 
         return $this;
     }
