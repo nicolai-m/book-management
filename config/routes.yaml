@@ -18,6 +18,12 @@ app_not_found:
   path: /notfound
   controller: App\View\Home::notFound
 
-app_o_library_search:
-  path: /request_api/o_library
-  controller: App\View\OpenLibraryInfos::getBookByApi
+ajax_ol_infos_by_isbn:
+  path: /ajax/book-infos-by-isbn
+  controller: App\View\OpenLibraryInfos::getBookByIsbn
+  methods:    POST|HEAD
+
+ajax_ol_infos_by_title:
+  path: /ajax/book-infos-by-title
+  controller: App\View\OpenLibraryInfos::getBookByTitle
+  methods:    POST|HEAD

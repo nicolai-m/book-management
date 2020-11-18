@@ -8,6 +8,7 @@ book:
   title: Titel
   isbn: ISBN
   author: Autor
+  authors: Autor(en)
   borrowed:
     title: Ausgeliehen
     yes: Ja
@@ -15,5 +16,11 @@ book:
   add: Hinzufügen
   exists: Das Buch existiert bereits!
   added: Wurde hinzugefügt
+  apply: Übernehmen
+  details:
+    by:
+      isbn: Details über die ISBN
+      title: Details über den Titel
+  no_items_found: Keine Eintrag gefunden!
 
 not_found: Eintrag nicht gefunden!
