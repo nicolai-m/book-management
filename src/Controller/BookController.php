@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Books as BooksEntity;
 use App\Repository\BooksRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 
 class BookController
@@ -59,6 +60,7 @@ class BookController
             $bookEntry->setIsbn($isbn);
             $bookEntry->setAuthor($author);
             $bookEntry->setBorrowed($borrowed);
+            $bookEntry->setCreated(new DateTime());
 
             $this->entityManager->persist($bookEntry);
             $this->entityManager->flush();
@@ -68,10 +70,10 @@ class BookController
     }
 
     /**
-     * @param int $isbn
+     * @param string $isbn
      * @return BooksEntity|null
      */
-    public function read(int $isbn)
+    public function read(string $isbn)
     {
         return $this->booksRepository->findOneBy(['isbn' => $isbn]);
     }
@@ -80,7 +82,7 @@ class BookController
      * @param mixed $title
      * @return BookController
      */
-    public function setTitle($title): self
+    public function setTitle(string $title): self
     {
         $this->title = $title;
         return $this;
@@ -90,7 +92,7 @@ class BookController
      * @param mixed $isbn
      * @return BookController
      */
-    public function setIsbn($isbn): self
+    public function setIsbn(string $isbn): self
     {
         $this->isbn = $isbn;
         return $this;
@@ -117,10 +119,10 @@ class BookController
     }
 
     /**
-     * @param int $isbn
+     * @param string $isbn
      * @return bool
      */
-    public function update(int $isbn): bool
+    public function update(string $isbn): bool
     {
         $book = $this->booksRepository->findOneBy(['isbn' => $isbn]);
 
@@ -145,7 +147,6 @@ class BookController
             $hasChanged = true;
         }
 
-
         if(!empty($this->borrowed)) {
             $book->setBorrowed($this->borrowed);
             $hasChanged = true;
@@ -160,9 +161,9 @@ class BookController
     }
 
     /**
-     * @param int $isbn
+     * @param string $isbn
      */
-    public function delete(int $isbn)
+    public function delete(string $isbn)
     {
         $book = $this->booksRepository->findOneBy(['isbn' => $isbn]);
 
