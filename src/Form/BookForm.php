@@ -7,7 +7,6 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,7 +22,7 @@ class BookForm extends AbstractType
                 'required' => true,
                 'label' => 'book.title'
             ])
-            ->add('isbn', IntegerType::class, [
+            ->add('isbn', TextType::class, [
                 'required' => true,
                 'label' => 'book.isbn'
             ])
