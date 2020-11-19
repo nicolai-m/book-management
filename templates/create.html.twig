@@ -26,7 +26,7 @@
             <tr>
                 <td>{{ form_row(bookForm.submit) }}</td>
                 <td><button type="button" class="btn btn-secondary" onclick="getDataByIsbn()"><i class='fas fa-search'></i> {% trans %}book.details.by.isbn{% endtrans %}</button></td>
-                <td><button type="button" class="btn btn-secondary"><i class='fas fa-search'></i> {% trans %}book.details.by.title{% endtrans %}</button></td>
+                <td><button type="button" class="btn btn-secondary" onclick="getDataByTitle()"><i class='fas fa-search'></i> {% trans %}book.details.by.title{% endtrans %}</button></td>
 
             </tr>
             </tbody>
