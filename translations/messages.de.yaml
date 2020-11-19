@@ -14,6 +14,7 @@ book:
     yes: Ja
     no: Nein
   add: Hinzufügen
+  save: Speichern
   exists: Das Buch existiert bereits!
   added: Wurde hinzugefügt
   apply: Übernehmen
@@ -22,6 +23,8 @@ book:
       isbn: Details über die ISBN
       title: Details über den Titel
   no_items_found: Keine Eintrag gefunden!
+  deleted: wurde gelöscht!
+  should_be_deleted: Soll das Buch gelöscht werden?
 
 not_found: Eintrag nicht gefunden!
 
@@ -29,3 +32,6 @@ firstPage: Erste
 lastPage: Letzte
 
 search: Suche
+edit: Bearbeiten
+delete: Löschen
+cancel: Abbruch

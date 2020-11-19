@@ -45,4 +45,17 @@ class BooksRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function bookSearch(string $value, int $maxResults = 10)
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.title LIKE :val')
+            ->orWhere('b.isbn LIKE :val')
+            ->setParameter('val', '%'.$value.'%')
+            ->orderBy('b.created', 'ASC')
+            ->setMaxResults($maxResults)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

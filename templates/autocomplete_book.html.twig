@@ -1,0 +1,12 @@
+{% if debug %}
+    {{ dump(books) }}
+{% else %}
+    {% if books is not empty %}
+        {% set isAutocomplete = true %}
+        <div id="search-result" class="autocomplete-items bg-dark text-white">
+            {% include '@widget/book_list.html.twig' %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">{% trans %}book.no_items_found{% endtrans %}</div>
+    {% endif %}
+{% endif %}

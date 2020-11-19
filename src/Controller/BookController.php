@@ -120,12 +120,11 @@ class BookController
     }
 
     /**
-     * @param string $isbn
      * @return bool
      */
-    public function update(string $isbn): bool
+    public function update(): bool
     {
-        $book = $this->booksRepository->findOneBy(['isbn' => $isbn]);
+        $book = $this->booksRepository->findOneBy(['isbn' => $this->isbn]);
 
         if(!$book) {
             return false;
@@ -148,7 +147,7 @@ class BookController
             $hasChanged = true;
         }
 
-        if(!empty($this->borrowed)) {
+        if($this->borrowed !== $book->getBorrowed()) {
             $book->setBorrowed($this->borrowed);
             $hasChanged = true;
         }

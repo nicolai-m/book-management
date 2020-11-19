@@ -24,10 +24,13 @@
                 <td colspan="3">{{ form_row(bookForm.borrowed) }}</td>
             </tr>
             <tr>
-                <td>{{ form_row(bookForm.submit) }}</td>
+                {% if edit %}
+                <td><button type="submit" class="btn btn-success" ><i class='fas fa-save'></i> {% trans %}book.save{% endtrans %}</button></td>
+                {% else %}
+                <td><button type="submit" class="btn btn-primary" ><i class='fas fa-plus-square'></i> {% trans %}book.add{% endtrans %}</button></td>
+                {% endif %}
                 <td><button type="button" class="btn btn-secondary" onclick="getDataByIsbn()"><i class='fas fa-search'></i> {% trans %}book.details.by.isbn{% endtrans %}</button></td>
                 <td><button type="button" class="btn btn-secondary" onclick="getDataByTitle()"><i class='fas fa-search'></i> {% trans %}book.details.by.title{% endtrans %}</button></td>
-
             </tr>
             </tbody>
         </table>

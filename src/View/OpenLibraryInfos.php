@@ -4,7 +4,7 @@
 namespace App\View;
 
 
-use App\Controller\OpenLibraryController;
+use App\Controller\OpenLibraryApiController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,14 +16,14 @@ use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 
 class OpenLibraryInfos extends AbstractController
 {
-    /** @var OpenLibraryController */
-    private $openLibraryController;
+    /** @var OpenLibraryApiController */
+    private $openLibraryApiController;
 
     public function __construct(
-        OpenLibraryController $openLibraryController
+        OpenLibraryApiController $openLibraryApiController
     )
     {
-        $this->openLibraryController = $openLibraryController;
+        $this->openLibraryApiController = $openLibraryApiController;
     }
 
     /**
@@ -40,16 +40,14 @@ class OpenLibraryInfos extends AbstractController
         $request->setMethod('POST');
         $isbn = $request->get('isbn');
 
-//        $isbn = '9780747575443';
-
-        $book = $this->openLibraryController->getBookByIsbn($isbn);
+        $book = $this->openLibraryApiController->getBookByIsbn($isbn);
 
         $params = [
-            'infos' =>  $book
-
+            'infos' => $book,
+            'debug' => false
         ];
 
-        return $this->render('openlibrary-search.html.twig',$params);
+        return $this->render('openlibrary_search.html.twig',$params);
     }
 
     /**
@@ -67,12 +65,13 @@ class OpenLibraryInfos extends AbstractController
         $title = $request->get('title');
 
 
-        $book = $this->openLibraryController->getBookByIsbn($title);
+        $book = $this->openLibraryApiController->getBookByTitle($title);
 
         $params = [
-            'infos' =>  $book
+            'infos' => $book,
+            'debug' => false
         ];
 
-        return $this->render('openlibrary-search.html.twig',$params);
+        return $this->render('openlibrary_search.html.twig',$params);
     }
 }

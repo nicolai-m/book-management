@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
     $(document).ajaxStart(function(){
         $("#wait").css("display", "block");
@@ -9,21 +7,46 @@ $(document).ready(function(){
         $("#wait").css("display", "none");
         $("#wait-bg").css("display", "none");
     });
+
+    $("#search input").on("input", function(){
+        var $searchVal = $( this ).val();
+        $.ajax({
+            type: "POST",
+            url: "/search/autocomplete",
+            data: {
+                search_value: $searchVal
+            },
+            success: function(result) {
+                var $searchResult = result;
+                if ($searchResult.length === 0) {
+                    $("#search-result").remove();
+                } else {
+                    $("#search-result").remove();
+                    $("#search").append( $searchResult );
+                }
+            },
+        });
+    });
 });
 
 
-function delBook(id) {
+function delBook(isbn) {
+    var url = "/";
+
     $.ajax({
         type: "POST",
-        url: "/ajax/del-book",
+        url: "/ajax/book-delete",
         data: {
-            image: id
+            isbn: isbn
         },
         success: function(result) {
-
-            if(result.valueOf(result.successful)) {
-
-            }
+            $('#modal-box').html(result)
+            $('#book-deleted').modal('show');
+            setTimeout(
+                function()
+                {
+                    $(location).attr('href',url);
+                }, 5000);
         },
     });
 }
@@ -69,17 +92,24 @@ function getDataByIsbn() {
     }
 }
 
+
 function getDataByTitle() {
-        var bookTitle = $('#book_form_title').val();
+    var bookTitle = $('#book_form_title').val();
 
+    if(bookTitle.length > 0) {
         $.ajax({
-        type: "POST",
-        url: "/ajax/book-infos-by-title",
-        data: {
-            image: bookTitle
-        },
-        success: function(result) {
 
-        },
-    });
+            type: "POST",
+            url: "/ajax/book-infos-by-title",
+            data: {
+                title: bookTitle
+            },
+            success: function(result) {
+
+                $('#modal-box').html(result)
+                $('#openlibrary-result').modal('show');
+
+            },
+        });
+    }
 }

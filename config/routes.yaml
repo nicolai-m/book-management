@@ -1,7 +1,3 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
-
 app_home:
   path: /
   controller: App\View\Home::displayHome
@@ -14,6 +10,10 @@ app_book_create:
   path: /book/create
   controller: App\View\CreateAndEdit::createBook
 
+app_book_edit:
+  path: /book/edit/{isbn}
+  controller: App\View\CreateAndEdit::editBook
+
 app_book:
   path: /book/{isbn}
   controller: App\View\Book::displayBook
@@ -21,6 +21,16 @@ app_book:
 app_not_found:
   path: /notfound
   controller: App\View\Home::notFound
+
+search_autocomplete:
+  path: /search/autocomplete
+  controller: App\View\Search::autocomplete
+  methods:    POST|HEAD
+
+search_book:
+  path: /search/book
+  controller: App\View\Search::book
+  methods:    POST|HEAD
 
 ajax_ol_infos_by_isbn:
   path: /ajax/book-infos-by-isbn
@@ -31,3 +41,7 @@ ajax_ol_infos_by_title:
   path: /ajax/book-infos-by-title
   controller: App\View\OpenLibraryInfos::getBookByTitle
   methods:    POST|HEAD
+
+ajax_book_delete:
+  path: /ajax/book-delete
+  controller: App\View\CreateAndEdit::deleteBook
