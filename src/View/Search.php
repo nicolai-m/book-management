@@ -29,7 +29,6 @@ class Search extends AbstractController
 
         $params = [
             'books' => $result,
-            'debug' => false
         ];
 
         return $this->render('autocomplete_book.html.twig',$params);
@@ -44,7 +43,6 @@ class Search extends AbstractController
 
         $params = [
             'books' => $result,
-            'debug' => false
         ];
 
         return $this->render('search_book.html.twig',$params);

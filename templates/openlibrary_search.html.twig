@@ -7,10 +7,6 @@
             </div>
 
             <div class="modal-body">
-
-                {% if debug %}
-                {{ dump(infos) }}
-                {% else %}
                 {% if infos is not empty %}
                 <table class="table table-striped">
                     {% for info in infos %}
@@ -48,7 +44,6 @@
                 </table>
                 {% else %}
                     <div class="alert alert-info">{% trans %}book.no_items_found{% endtrans %}</div>
-                {% endif %}
                 {% endif %}
             </div>
 

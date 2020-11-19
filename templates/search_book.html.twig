@@ -2,15 +2,11 @@
 
 {% block body %}
     <div class="container">
-    {% if debug %}
-        {{ dump(books) }}
-    {% else %}
         {% if books is not empty %}
             {% set isAutocomplete = false %}
             {% include '@widget/book_list.html.twig' %}
         {% else %}
             <div class="alert alert-info">{% trans %}book.no_items_found{% endtrans %}</div>
         {% endif %}
-    {% endif %}
     </div>
 {% endblock %}

@@ -43,8 +43,7 @@ class OpenLibraryInfos extends AbstractController
         $book = $this->openLibraryApiController->getBookByIsbn($isbn);
 
         $params = [
-            'infos' => $book,
-            'debug' => false
+            'infos' => $book
         ];
 
         return $this->render('openlibrary_search.html.twig',$params);
@@ -68,8 +67,7 @@ class OpenLibraryInfos extends AbstractController
         $book = $this->openLibraryApiController->getBookByTitle($title);
 
         $params = [
-            'infos' => $book,
-            'debug' => false
+            'infos' => $book
         ];
 
         return $this->render('openlibrary_search.html.twig',$params);
