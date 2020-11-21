@@ -8,6 +8,7 @@ use App\Controller\BookController;
 use App\Form\BookForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class CreateAndEdit extends AbstractController
@@ -18,6 +19,11 @@ class CreateAndEdit extends AbstractController
     /** @var TranslatorInterface */
     protected $translator;
 
+    /**
+     * CreateAndEdit constructor.
+     * @param BookController $bookController
+     * @param TranslatorInterface $translator
+     */
     public function __construct(
         BookController $bookController,
         TranslatorInterface $translator
@@ -27,7 +33,11 @@ class CreateAndEdit extends AbstractController
         $this->translator = $translator;
     }
 
-    public function createBook(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function createBook(Request $request): Response
     {
         $info = '';
 
@@ -59,7 +69,12 @@ class CreateAndEdit extends AbstractController
         return $this->render('create_edit.html.twig',$params);
     }
 
-    public function editBook($isbn, Request $request)
+    /**
+     * @param $isbn
+     * @param Request $request
+     * @return Response
+     */
+    public function editBook($isbn, Request $request): Response
     {
         $info = '';
 
@@ -100,7 +115,11 @@ class CreateAndEdit extends AbstractController
         return $this->render('create_edit.html.twig',$params);
     }
 
-    public function deleteBook(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function deleteBook(Request $request): Response
     {
         $request->setMethod('POST');
         $isbn = $request->get('isbn');

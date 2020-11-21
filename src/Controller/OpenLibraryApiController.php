@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
@@ -25,6 +24,10 @@ class OpenLibraryApiController
         $this->client = $client;
     }
 
+    /**
+     * @param $olKey
+     * @return string
+     */
     protected function openLibraryUrl($olKey): string
     {
         return 'http://openlibrary.org/' . $olKey . '.json';
@@ -52,6 +55,10 @@ class OpenLibraryApiController
         return 'https://openlibrary.org/isbn/' . $isbn . '.json';
     }
 
+    /**
+     * @param $string
+     * @return string
+     */
     protected function normalize($string)
     {
         $string = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
@@ -59,6 +66,10 @@ class OpenLibraryApiController
         return  strtolower($string);
     }
 
+    /**
+     * @param $string
+     * @return string|string[]|null
+     */
     protected function normalizeIsbn($string)
     {
         return preg_replace("#[^\d\w]#i", "",trim($this->normalize($string)));
@@ -92,9 +103,7 @@ class OpenLibraryApiController
             return false;
         }
 
-        $content = $response->toArray();
-
-        return $content;
+        return $response->toArray();
     }
 
     /**
@@ -184,8 +193,6 @@ class OpenLibraryApiController
 
         return $result;
     }
-
-
 
     /**
      * @param string $olKey

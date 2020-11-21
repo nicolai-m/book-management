@@ -19,6 +19,10 @@ class OpenLibraryInfos extends AbstractController
     /** @var OpenLibraryApiController */
     private $openLibraryApiController;
 
+    /**
+     * OpenLibraryInfos constructor.
+     * @param OpenLibraryApiController $openLibraryApiController
+     */
     public function __construct(
         OpenLibraryApiController $openLibraryApiController
     )

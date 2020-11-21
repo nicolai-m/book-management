@@ -120,9 +120,10 @@ class BookController
     }
 
     /**
+     * @param string $isbn
      * @return bool
      */
-    public function update($isbn): bool
+    public function update(string $isbn): bool
     {
         $book = $this->booksRepository->findOneBy(['isbn' => $isbn]);
 

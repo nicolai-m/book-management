@@ -8,12 +8,18 @@ use App\Repository\BooksRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Controller\Pagination;
+use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\NonUniqueResultException;
 
 class Home extends AbstractController
 {
     /** @var BooksRepository */
     private $booksRepository;
 
+    /**
+     * Home constructor.
+     * @param BooksRepository $booksRepository
+     */
     public function __construct(
         BooksRepository $booksRepository
     )
@@ -21,12 +27,22 @@ class Home extends AbstractController
         $this->booksRepository  = $booksRepository;
     }
 
-
+    /**
+     * @return Response
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
     public function displayHome(): Response
     {
         return $this->bookList();
     }
 
+    /**
+     * @param int $page
+     * @return Response
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
     public function bookList(int $page = 1)
     {
         $entriesPerPage = 25;
@@ -51,6 +67,9 @@ class Home extends AbstractController
         return $this->render('home.html.twig',$params);
     }
 
+    /**
+     * @return Response
+     */
     public function notFound()
     {
         return $this->render('not_found.html.twig');

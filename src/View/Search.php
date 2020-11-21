@@ -7,12 +7,17 @@ namespace App\View;
 use App\Repository\BooksRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class Search extends AbstractController
 {
     /** @var BooksRepository */
     private $booksRepository;
 
+    /**
+     * Search constructor.
+     * @param BooksRepository $booksRepository
+     */
     public function __construct(
         BooksRepository $booksRepository
     )
@@ -20,7 +25,11 @@ class Search extends AbstractController
         $this->booksRepository  = $booksRepository;
     }
 
-    public function autocomplete(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function autocomplete(Request $request): Response
     {
         $request->setMethod('POST');
         $searchValue = $request->get('search_value');
@@ -34,7 +43,11 @@ class Search extends AbstractController
         return $this->render('autocomplete_book.html.twig',$params);
     }
 
-    public function book(Request $request)
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function book(Request $request): Response
     {
         $request->setMethod('POST');
         $searchValue = $request->get('search');
