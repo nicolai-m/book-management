@@ -83,7 +83,7 @@ class CreateAndEdit extends AbstractController
             $this->bookController->setAuthor($bookData['author']);
             $this->bookController->setBorrowed($bookData['borrowed']);
 
-            $result = $this->bookController->update();
+            $result = $this->bookController->update($isbn);
             $info = $this->translator->trans('book.added');
 
             if (!$result) {

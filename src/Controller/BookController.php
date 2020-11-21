@@ -122,9 +122,9 @@ class BookController
     /**
      * @return bool
      */
-    public function update(): bool
+    public function update($isbn): bool
     {
-        $book = $this->booksRepository->findOneBy(['isbn' => $this->isbn]);
+        $book = $this->booksRepository->findOneBy(['isbn' => $isbn]);
 
         if(!$book) {
             return false;
